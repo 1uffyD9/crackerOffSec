@@ -56,11 +56,15 @@ class crackerOffSec:
 			res = session.post('{}/insert.php'.format(self.source), headers=headers, data=data, proxies=proxies)
 			soup = BeautifulSoup(res.text, "lxml")
 			for element in soup.findAll("div",attrs={'id':'success'}):
+				print(element.text)
 				if "plaintext is" in element.text:
 					val = element.text.split(' plaintext is:')[1]
 					sys.exit("{}The plaintext is :{}{}{}".format(self.success, self.green, val, self.nocolor))
 				else:
-					sys.exit("{}Not Found! Sorry".format(self.error))
+					sys.exit("{}Hash not Found. Sorry!".format(self.error))
+			for element in soup.findAll("div",attrs={'id':'error'}):
+				if "Bad hash" in element.text:
+					sys.exit("{}Bad hash format! Try again.".format(self.fail))
 
 		except requests.exceptions.RequestException as e:
 			sys.exit(self.error + "Something going wrong with the request. Please check the url and the connectivity")
