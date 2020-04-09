@@ -14,5 +14,5 @@ $ ln -sf `pwd`/crackerOffSec.py /usr/local/bin/crackerOffSec
 #### Syntax
 ```
 $ crackerOffSec -h 
-$ crackerOffSec -p <priorityCode> -hs <hashValue>
+$ crackerOffSec -p <priorityCode> -hs <hashValue>/<hashFile>
 ```
